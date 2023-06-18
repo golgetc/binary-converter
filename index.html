@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to right, rgb(255, 102, 0), red);
+        }
+        #inputText {
+            width: 80vw; /* Genişliği, viewport'un %80'i olacak şekilde ayarlanır. */
+            border: none; /* Kenarlık kaldırılır. */
+            outline: none; /* Tıklanınca oluşan çerçeve kaldırılır. */
+            background: transparent; /* Şeffaf arkaplan. */
+            border-bottom: 1px solid white; /* Sadece altta beyaz bir çizgi. */
+            color: white; /* Yazı rengi beyaz. */
+        }
+        #inputText:focus {
+            box-shadow: none;
+        }
+
+        #output {
+            margin-top: 1rem;
+            color: white;
+            font-size: 18px;
+        }
+        .donustur {
+            width: 60%;
+        }
+
+        #tweetButton {
+            display: none;
+        }
+    </style>
+
+    <title>Binary Converter</title>
+  </head>
+  <body>
+    <div class="text-center">
+        <input type="text" id="inputText" class="form-control" placeholder="Metni buraya girin">
+        <button id="convertButton" class="btn btn-light mt-3 donustur">Binary'e Dönüştür</button>
+        <div id="output"></div>
+        <a id="tweetButton" class="btn btn-info mt-3 btn-sm" target="_blank"><i class="fab fa-twitter"></i> Tweetle</a>
+    </div>
+
+    <!-- Bootstrap JS and JQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        document.getElementById('convertButton').addEventListener('click', function() {
+            var inputText = document.getElementById('inputText').value;
+            var binaryText = "";
+            for (let i = 0; i < inputText.length; i++) {
+                binaryText += inputText[i].charCodeAt(0).toString(2) + " ";
+            }
+            binaryText = binaryText.trim();
+            document.getElementById('output').innerText = binaryText;
+            document.getElementById('tweetButton').style.display = "block";
+            document.getElementById('tweetButton').href = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(binaryText);
+        });
+    </script>
+
+  </body>
+</html>
